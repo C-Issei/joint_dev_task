@@ -98,10 +98,11 @@ def q11
   sports = ["サッカー", "バスケ", "野球", ["フットサル", "野球"], "水泳", "ハンドボール", ["卓球", "サッカー", "ボルダリング"]]
 
   # 以下に回答を記載
-  hobbies = sports.flatten!.uniq!
+  # hobbies = sports.flatten!.uniq!
+  sports.flatten!.uniq!
   puts "ユーザーの趣味一覧"
-  hobbies.each.with_index(1) do |hobby, i|
-    puts "No.#{i} #{hobby}"
+  sports.each.with_index(1) do |sport, i|
+    puts "No.#{i} #{sport}"
   end
 end
 
@@ -117,16 +118,18 @@ def q13
   update_data = { age: 32, address: "沖縄" }
 
   # 以下に回答を記載
-  rev_user_data = user_data.merge!(update_data)
-  puts rev_user_data
+  # rev_user_data = user_data.merge!(update_data)
+  user_data.merge!(update_data)
+  puts user_data
 end
 
 def q14
   data = { name: "satou", age: 33, address: "saitama", hobby: "soccer", email: "hoge@fuga.com" }
 
   # 以下に回答を記載
-  keys_array = data.keys
-  p keys_array
+  # keys_array = data.keys
+  # p keys_array
+  p data.keys
 end
 
 def q15
@@ -154,7 +157,19 @@ end
 
 class UserQ17
   # 以下に回答を記載
+  attr_accessor :name, :age, :gender
 
+  def initialize(name:, age:, gender:)
+    @name = name
+    @age = age
+    @gender = gender
+  end
+
+  def info
+    puts "名前：#{@name}"
+    puts "年齢：#{@age}"
+    puts "性別：#{@gender}"
+  end
 end
 
 def q17
@@ -169,7 +184,20 @@ end
 
 class UserQ18
   # 以下に回答を記載
+  attr_accessor :name, :age
 
+  def initialize(name:, age:)
+    @name = name
+    @age = age
+  end
+
+  def introduce
+    if @age >= 32
+      "こんにちは,#{@name}と申します。宜しくお願いいたします。"
+    else
+      "はいさいまいど〜,#{@name}です！！！"
+    end
+  end
 end
 
 def q18
@@ -187,6 +215,10 @@ class Item
   def initialize(name)
     @name = name
   end
+
+  def name
+    "#{@name}"
+  end
 end
 
 def q19
@@ -197,12 +229,38 @@ end
 
 class UserQ20
   # 以下に回答を記載
+  attr_accessor :name, :age
 
+  def initialize(name:, age:)
+    @name = name
+    @age = age
+  end
 end
 
 class Zoo
   # 以下に回答を記載
+  attr_accessor :name, :entry_fee
 
+  def initialize(name:, entry_fee:)
+    @name = name
+    @entry_fee = entry_fee
+  end
+
+  def info_entry_fee(user)
+    if @age >= 0 && @age <= 5
+      fee = @entry_fee[:infant]
+      puts "#{@name}さんの入場料金は#{fee}円です。"
+    elsif @age >= 6 && @age <= 12
+      fee = @entry_fee[:children]
+      puts "#{@name}さんの入場料金は#{fee}円です。"
+    elsif @age >= 13 && @age <= 64
+      fee = @entry_fee[:adult]
+      puts "#{@name}さんの入場料金は#{fee}円です。"
+    else
+      fee = @entry_fee[:senior]
+      puts "#{@name}さんの入場料金は#{fee}円です。"
+    end
+  end
 end
 
 def q20
