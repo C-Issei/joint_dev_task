@@ -157,7 +157,7 @@ end
 
 class UserQ17
   # 以下に回答を記載
-  attr_accessor :name, :age, :gender
+  # attr_accessor :name, :age, :gender
 
   def initialize(name:, age:, gender:)
     @name = name
@@ -166,9 +166,14 @@ class UserQ17
   end
 
   def info
-    puts "名前：#{@name}"
-    puts "年齢：#{@age}"
-    puts "性別：#{@gender}"
+    # puts "名前：#{@name}"
+    # puts "年齢：#{@age}"
+    # puts "性別：#{@gender}"
+    puts <<~TEXT
+           "名前：#{@name}"
+           "年齢：#{@age}"
+           "性別：#{@gender}"
+         TEXT
   end
 end
 
@@ -184,7 +189,7 @@ end
 
 class UserQ18
   # 以下に回答を記載
-  attr_accessor :name, :age
+  # attr_accessor :name, :age
 
   def initialize(name:, age:)
     @name = name
@@ -211,14 +216,15 @@ end
 
 class Item
   # 以下を修正して下さい
+  attr_reader :name
 
-  def initialize(name)
+  def initialize(name:)
     @name = name
   end
 
-  def name
-    "#{@name}"
-  end
+  # def name
+  #   "#{@name}"
+  # end
 end
 
 def q19
@@ -229,7 +235,7 @@ end
 
 class UserQ20
   # 以下に回答を記載
-  attr_accessor :name, :age
+  attr_reader :name, :age
 
   def initialize(name:, age:)
     @name = name
@@ -239,27 +245,28 @@ end
 
 class Zoo
   # 以下に回答を記載
-  attr_accessor :name, :entry_fee
+  # attr_reader :zoo_name, :entry_fee
 
   def initialize(name:, entry_fee:)
-    @name = name
+    @zoo_name = name
     @entry_fee = entry_fee
   end
 
   def info_entry_fee(user)
-    if @age >= 0 && @age <= 5
+    if user.age >= 0 && user.age <= 5
       fee = @entry_fee[:infant]
-      puts "#{@name}さんの入場料金は#{fee}円です。"
-    elsif @age >= 6 && @age <= 12
+      # puts "#{user.name}さんの入場料金は #{fee} 円です。"
+    elsif user.age >= 6 && user.age <= 12
       fee = @entry_fee[:children]
-      puts "#{@name}さんの入場料金は#{fee}円です。"
-    elsif @age >= 13 && @age <= 64
+      # puts "#{user.name}さんの入場料金は #{fee} 円です。"
+    elsif user.age >= 13 && user.age <= 64
       fee = @entry_fee[:adult]
-      puts "#{@name}さんの入場料金は#{fee}円です。"
+      # puts "#{user.name}さんの入場料金は #{fee} 円です。"
     else
       fee = @entry_fee[:senior]
-      puts "#{@name}さんの入場料金は#{fee}円です。"
+      # puts "#{user.name}さんの入場料金は #{fee} 円です。"
     end
+    puts "#{user.name}さんの入場料金は #{fee} 円です。"
   end
 end
 
