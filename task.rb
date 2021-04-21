@@ -166,9 +166,6 @@ class UserQ17
   end
 
   def info
-    # puts "名前：#{@name}"
-    # puts "年齢：#{@age}"
-    # puts "性別：#{@gender}"
     puts <<~TEXT
            "名前：#{@name}"
            "年齢：#{@age}"
@@ -253,19 +250,18 @@ class Zoo
   end
 
   def info_entry_fee(user)
-    if user.age >= 0 && user.age <= 5
+    case user.age
+
+    when 0..5
       fee = @entry_fee[:infant]
-      # puts "#{user.name}さんの入場料金は #{fee} 円です。"
-    elsif user.age >= 6 && user.age <= 12
+    when 6..12
       fee = @entry_fee[:children]
-      # puts "#{user.name}さんの入場料金は #{fee} 円です。"
-    elsif user.age >= 13 && user.age <= 64
+    when 13..64
       fee = @entry_fee[:adult]
-      # puts "#{user.name}さんの入場料金は #{fee} 円です。"
     else
       fee = @entry_fee[:senior]
-      # puts "#{user.name}さんの入場料金は #{fee} 円です。"
     end
+
     puts "#{user.name}さんの入場料金は #{fee} 円です。"
   end
 end
